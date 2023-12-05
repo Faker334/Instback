@@ -1,0 +1,15 @@
+.line{
+    height:900px;
+    width:0px;
+    border-left:2px solid #d5c8cb;
+    background-color:#fc9;
+    padding-left:0px;
+    position: absolute;
+    top: 0;
+    left: 200px;
+}
+.profpik{
+    position: absolute;
+    left: 400px;
+
+}

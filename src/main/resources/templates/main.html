@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<link rel="stylesheet" type="text/css" th:href="@{/css/instcss.css}">
+<body>
+<img  src="https://sun9-66.userapi.com/impg/EVF9e60vS43dyg8YSlca5e0QnA9FXz-dOUSg_g/0M97fBOvaGk.jpg?size=480x270&quality=96&sign=67e4c0a5d645c3fc3cbfe6ecd4c4e421&type=album" width="90px">
+<br>
+<img src="https://sun9-10.userapi.com/impg/CrAYBfI2ym5qwHx2QVURHt0062CLY1HzDyKF3A/Ua6I1cBDab8.jpg?size=382x336&quality=96&sign=2c625145b15e84622aa31a461b772833&type=album"  width="30px">
+<a href="#" style="color: black" >Main</a>
+<br>
+<img src="https://sun9-46.userapi.com/impg/pjYOPCKSLn_sSUE_6vSszDnIZPdWsurXOdBQNw/jbQBZRsWzX4.jpg?size=512x512&quality=96&sign=a9f9e620f83e54e6924457345d760f5e&type=album" width="30">
+<a href="#" style="color: black" >Find</a>
+<br>
+<img src="https://sun9-79.userapi.com/impg/VcTyPtbrf68t2_EwZMe2aAQexDO0S7gmk9Ru-g/gpU-U2OwAjM.jpg?size=555x508&quality=96&sign=d978a9f96c26b881be5dcf8917dda298&type=album" width="30">
+<a href="#" style="color: black">Unfolowers</a>
+<div class="line" style="height:900px;
+    width:0px;
+    border-left:2px solid #d5c8cb;
+    background-color:#fc9;
+    padding-left:0px;
+    position: absolute;
+    top: 0;
+    left: 200px;"></div>
+<img class="profpik" th:src="@{/pickchers/{picc}(picc=${pick})}" alt="1412341" width="140px" style=" border-radius: 100px; position: absolute ;
+    left: 500px; top: 40px">
+<p th:text="${nikname}" style="position: absolute; left: 670px; top: 45px; font: small-caps bold 24px/1 sans-serif;">nickname</p>
+<p th:text="${post}+' posts   '+${followers}+' followers   '+${following}+' following '" style="position: absolute; left: 670px; top: 75px; font: small-caps bold 24px/1 sans-serif;">post</p>
+<p th:text="${name}"style="position: absolute; left: 670px; top: 105px; font: small-caps bold 24px/1 sans-serif;">name</p>
+
+<p style="text-align: center;font: small-caps bold 24px/1 sans-serif; color: darkviolet">Unfollowers:</p>
+<div class="otpishiki" th:each="otpishik : ${otpishiki}" style="text-align: center">
+        <img class="OtImg" th:src="@{/pickchers/{otpishik}(otpishik=${otpishik.getProfile_pic_url()})}" alt="pick" width="70px" style=" border-radius: 100px">
+        <p th:text="${otpishik.getUsername()}" style="font: small-caps bold 15px/1 sans-serif;">user</p>
+
+</div>
+
+</body>
+</html>
+<style>
+    .otpishiki{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        text-align: left;
+    }
+
+</style>

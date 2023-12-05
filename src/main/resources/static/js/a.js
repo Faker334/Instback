@@ -1,0 +1,6 @@
+console.log("шалам")
+console.log("шалам")
+console.log("шалам")
+console.log("шалам")
+console.log("шалам")
+console.log("шалам")
