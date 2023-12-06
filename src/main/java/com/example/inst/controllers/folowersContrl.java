@@ -30,35 +30,51 @@ public class folowersContrl {
         try {
             InstagramSearchUsernameResult usernameResult = instagram.sendRequest(
                     new InstagramSearchUsernameRequest(NickName)); // АККАУНТ
+                
             
             maxId=null;
+            
             while (true){ //подписчики
+                boolean neverno=false;
                 InstagramGetUserFollowersResult followers = instagram
                    .sendRequest(new InstagramGetUserFollowersRequest(usernameResult.getUser().getPk(), maxId));
                 System.out.println("Slept for 10 seconds");
+                TimeUnit.SECONDS.sleep(10);
+                
 
-                  maxId=followers.getNext_max_id();
+                 
                 if (followers.getUsers().size()!=0&&massivPodpishikov.size()!=0) {
                     System.out.println(" вошел в иф");
                 
-                    for (int j = 0; j < massivPodpishikov.size(); j++) {
-                        System.out.println(massivPodpishikov.size());
-                        if (massivPodpishikov.get(massivPodpishikov.size()-1)==followers.getUsers().get(j)) {
-                            System.out.println("второй иф"+followers.getUsers().get(j));
-                            int bbb=Integer.parseInt(maxId)+(j-1);
+                    for (int j = 0; j < followers.getUsers().size(); j++) {
+                        System.out.println(massivPodpishikov.size()+"j равен"+j);
+                        System.out.println(followers.getUsers().get(j).username);
+                        System.out.println("последний в массиве"+massivPodpishikov.get(massivPodpishikov.size()-1).username);
+                        if (massivPodpishikov.get(massivPodpishikov.size()-1).getUsername().equals(followers.getUsers().get(j).getUsername())) {
+                            System.out.println("второй иф"+followers.getUsers().get(j).username);
+                            if (maxId!=null) {
+                              int bbb=Integer.parseInt(maxId)+(j+1);
                             maxId=String.valueOf(bbb);
-                            break;
+                            neverno=true;
+                            break; 
+                            }
+                            
                         }
                     }
                         
                     }
+                    if (!neverno) {
+                      maxId=followers.getNext_max_id();
+                      massivPodpishikov.addAll(followers.getUsers());
+                    }
                 
-                    massivPodpishikov.addAll(followers.getUsers());
+                    
                   
 
                   System.out.println("ШАГ ЗАПРОСОВ ПОДПИСЧИКИ:"+ maxId);
                     if(maxId==null){break;}
            }
+           System.out.println("САЙЗ ПОДПИСЧИКОВ"+ massivPodpishikov.size());
            maxId1=null;
             while (true){ //подписки
                 InstagramGetUserFollowersResult following = instagram //
@@ -69,6 +85,9 @@ public class folowersContrl {
                 maxId1=following.getNext_max_id();
                 System.out.println("ШАГ ЗАПРОСОВ ПОДПИСКИ:"+maxId1);
                 if(maxId1==null){break;}
+            }
+            for (int i = 0; i < massivPodpishikov.size(); i++) {
+                System.err.println("ПОДПИСЧИК" + massivPodpishikov.get(i).username);
             }
 
             for (int i = 0; i < massivPodpisok.size(); i++) {    //вычитание
@@ -85,6 +104,7 @@ public class folowersContrl {
             for (InstagramUserSummary s:massivPodpisok) {
                 System.out.println("ОТПИСЧИКИ:"+s.username);
             }
+            
         }            catch (IOException e) {System.out.println("ЭКСЕПШН");System.out.println(e.getMessage());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
