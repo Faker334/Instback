@@ -17,8 +17,8 @@ import java.util.concurrent.TimeUnit;
 public class folowersContrl {
     Instagram4j instagram;
     String NickName;
-    String maxId1 = null;
-    String maxId = null;
+
+
     folowersContrl(Instagram4j instagram4j, String name){
         this.NickName =name;
         this.instagram=instagram4j;
@@ -32,6 +32,7 @@ public class folowersContrl {
             InstagramSearchUsernameResult usernameResult = instagram.sendRequest(
                     new InstagramSearchUsernameRequest(NickName)); // АККАУНТ
 
+            String maxId1 = null;
             while (true){ //подписки
                 InstagramGetUserFollowersResult following = instagram //
                         .sendRequest(new InstagramGetUserFollowingRequest(usernameResult.getUser().pk, maxId1));
@@ -42,7 +43,7 @@ public class folowersContrl {
                 System.out.println("ШАГ ЗАПРОСОВ ПОДПИСКИ:"+maxId1);
                 if(maxId1==null){break;}
             }
-
+            String maxId = null;
             while (true){ //подписчики
 
                 InstagramGetUserFollowersResult followers = instagram.sendRequest(new InstagramGetUserFollowersRequest(usernameResult.getUser().getPk(), maxId));
