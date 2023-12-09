@@ -31,8 +31,8 @@ public class thoFactor {
             if (Objects.equals(instagramLoginResult.getStatus(), "ok")) {
 
                 System.out.println("login success");
-
-            } else {
+            }
+             else {
                 if (Objects.equals(instagramLoginResult.getError_type(), "checkpoint_challenge_required")) {
                     // Challenge required
 

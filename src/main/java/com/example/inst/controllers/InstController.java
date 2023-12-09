@@ -2,6 +2,7 @@ package com.example.inst.controllers;
 
 
 
+
 import org.brunocvcunha.instagram4j.requests.InstagramSearchUsernameRequest;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramProfilePic;
 import org.brunocvcunha.instagram4j.requests.payload.InstagramSearchUsernameResult;
@@ -10,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.context.request.async.WebAsyncTask;
 import java.io.IOException;
 import java.util.List;
 
@@ -20,7 +21,9 @@ import java.util.List;
  */
 @Controller
 public class InstController {
-    thoFactor atorization = new thoFactor("tgrvih33ojo","b9da5jqmmzt0");
+
+
+    thoFactor atorization = new thoFactor("paraparapa383","Faker001");
 
 
     @GetMapping("/main")
@@ -51,8 +54,18 @@ public class InstController {
         }
         return "/main";
     }
+    @GetMapping("/ab")
+public void avb(){
 
+        try {
+            InstagramSearchUsernameResult   usernameResult = atorization.instagram.sendRequest(
+                    new InstagramSearchUsernameRequest("belyash_303"));
+            System.out.println(usernameResult.getUser().following_count);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
 
+    }
 
 
 
