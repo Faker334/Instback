@@ -73,24 +73,27 @@ public class folowersContrl {
 
             }
 
-            for (int i = 0; i < massivPodpisok.size(); i++) {    //вычитание
-                for (int j = 0; j <massivPodpishikov.size() ; j++) {
-                    if (massivPodpisok.get(i).getPk()==massivPodpishikov.get(j).getPk()){
-                        massivPodpisok.remove(i);
-                        i--;
-                        break;
+         for (InstagramUserSummary podpiska : massivPodpisok) {
+                boolean hasInPodpiskiAndPodpischiki = false;
+                for (InstagramUserSummary podpischik : massivPodpishikov) {
+                    if (podpischik.getPk() == podpiska.getPk()) {
+                        hasInPodpiskiAndPodpischiki = true;
                     }
                 }
+                if (!hasInPodpiskiAndPodpischiki) {
+                    otpiski.add(podpiska);
+                }
             }
-            System.out.println("сайз подписчиков"+massivPodpisok.size());
-            for (InstagramUserSummary s:massivPodpisok) {
-                System.out.println("ОТПИСЧИКИ:"+s.username);
+
+            System.out.println("СЃР°Р№Р· РїРѕРґРїРёСЃС‡РёРєРѕРІ"+massivPodpisok.size());
+            for (InstagramUserSummary s:otpiski) {
+                System.out.println("РћРўРџРРЎР§РРљР:"+s.username);
             }
-        }            catch (IOException e) {System.out.println("ЭКСЕПШН");System.out.println(e.getMessage());
+        }            catch (IOException e) {System.out.println("Р­РљРЎР•РџРЁРќ");System.out.println(e.getMessage());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-        return massivPodpisok;
+        return otpiski;
     }
 
 }
