@@ -26,8 +26,7 @@ public class folowersContrl {
     public List<InstagramUserSummary> RaznostPodpischipov(){
         List<InstagramUserSummary> massivPodpishikov = new ArrayList<>();
         List<InstagramUserSummary> massivPodpisok = new ArrayList<>();
-        massivPodpisok.clear();
-        massivPodpishikov.clear();
+        List<InstagramUserSummary> otpiski = new ArrayList<>();
         try {
             InstagramSearchUsernameResult usernameResult = instagram.sendRequest(
                     new InstagramSearchUsernameRequest(NickName)); // АККАУНТ
@@ -73,7 +72,10 @@ public class folowersContrl {
 
             }
 
-         for (InstagramUserSummary podpiska : massivPodpisok) {
+            for (InstagramUserSummary s:massivPodpishikov) {
+                System.out.println("подписчики:"+s.username);
+            }
+            for (InstagramUserSummary podpiska : massivPodpisok) {
                 boolean hasInPodpiskiAndPodpischiki = false;
                 for (InstagramUserSummary podpischik : massivPodpishikov) {
                     if (podpischik.getPk() == podpiska.getPk()) {
@@ -85,11 +87,11 @@ public class folowersContrl {
                 }
             }
 
-            System.out.println("СЃР°Р№Р· РїРѕРґРїРёСЃС‡РёРєРѕРІ"+massivPodpisok.size());
+            System.out.println("сайз подписчиков"+massivPodpisok.size());
             for (InstagramUserSummary s:otpiski) {
-                System.out.println("РћРўРџРРЎР§РРљР:"+s.username);
+                System.out.println("ОТПИСЧИКИ:"+s.username);
             }
-        }            catch (IOException e) {System.out.println("Р­РљРЎР•РџРЁРќ");System.out.println(e.getMessage());
+        }            catch (IOException e) {System.out.println("ЭКСЕПШН");System.out.println(e.getMessage());
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
